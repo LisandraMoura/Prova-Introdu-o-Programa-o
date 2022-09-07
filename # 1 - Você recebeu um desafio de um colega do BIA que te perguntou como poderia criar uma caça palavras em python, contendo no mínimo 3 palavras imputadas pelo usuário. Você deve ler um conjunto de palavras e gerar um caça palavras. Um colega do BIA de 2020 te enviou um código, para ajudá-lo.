@@ -1,0 +1,55 @@
+from random import randint
+s = "programacao"
+s = list(s)
+f = "aprovado"
+c = f[0]
+# Primeira letra 'a' de aprovado
+
+# quantas letras 'a' existem e em que posições?
+lst = []
+for pos, char in enumerate(s):
+    if char == c:
+        lst.append(pos)
+print("posições onde foi encontrada a letra 'a'", lst)
+
+# vamos imprimir a letra a na posicao 2 da lista
+lposi = lst[1]
+s[lposi] = f
+for letra in s:
+    print(letra)
+maior = f
+while True:
+    f = str(input("Qual palavra você quer adicionar no caça palavras? "))
+    c = f[0]  # Primeira letra 'a' de aprovado
+
+    # quantas letras 'a' existem e em que posições?
+    lst = []
+    for pos, char in enumerate(s):
+        if char == c:
+            lst.append(pos)
+    print(f"posições novas onde foi encontrada a letra '{f[0]}'", lst)
+
+    # vamos imprimir a letra a na posicao 2 da lista
+    if len(lst) == 0:
+        s.append(f)
+    else:
+        lposi = lst[randint(0, len(lst) - 1)]
+        x = 0
+        s[lposi] = f
+    for letra in s:
+        print(letra)
+    if len(f) > len(maior):
+        maior = f
+    if str(input("Quer continuar? ")) in 'N':
+        break
+
+for letra in s:
+    if len(letra) == len(maior):
+        for i in letra:
+            print(i, end=' ')
+    else:
+        for c in range(len(maior) - len(letra)):
+            letra += chr(randint(ord('a'), ord('z')))
+        for i in letra:
+            print(i, end=' ')
+    print()
