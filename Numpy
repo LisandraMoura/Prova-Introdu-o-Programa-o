@@ -1,0 +1,5 @@
+#fazendo um contador de números pares rápido
+import numpy as np
+
+numeros = np.array([n for n in range(0, 1000, 2)]) 
+print(numeros)
