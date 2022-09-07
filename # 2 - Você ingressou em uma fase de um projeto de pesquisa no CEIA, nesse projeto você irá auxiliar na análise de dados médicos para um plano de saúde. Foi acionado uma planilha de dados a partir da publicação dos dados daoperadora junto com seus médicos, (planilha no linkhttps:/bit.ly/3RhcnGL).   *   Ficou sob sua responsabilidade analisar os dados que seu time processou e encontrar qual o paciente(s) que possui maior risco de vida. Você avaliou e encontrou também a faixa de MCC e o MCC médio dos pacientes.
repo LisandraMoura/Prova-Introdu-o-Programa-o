@@ -1,0 +1,67 @@
+#from IPython.core.display import DisplayObject
+import pandas as pd
+import numpy as np
+arquivo_df = pd.read_excel('dadosmedicossaude.xlsx')
+
+#lista = xls.values.tolist() Não sei se conseguiria usar esse método com o .loc, por isso comentei  a linha.
+
+#Usando o método .loc[colunas, linhas]) para encontrar exatamente as colunas e linhas que quero
+#arquivo_df["linhas\risco cardiaco"] == "Risco"
+#arquivo_df["coluna\nome do paciente anonimizado", "coluna\risco cardiaco"]
+
+#imprimindo toda a tabela\ usando o método "display" para uma apresentação melhor
+display(arquivo_df)
+
+
+
+print("\033[36mPacientes com risco Cardiaco\033[m")
+#classificando pacientes com risco
+riscos1 = arquivo_df.loc[arquivo_df["risco cardiaco"] == "Risco",["nome do paciente anonimizado", "risco cardiaco"]]
+display(riscos1)
+#maior risco
+display("O maior risco é", riscos1.max())
+
+print("\033[36mPacientes com baixa vitaminas\033[m")
+#classificando pacientes com baixa vitamina
+vitaminas1 = arquivo_df.loc[arquivo_df["status de vitaminas"] == "Baixa de vitaminas", ["nome do paciente anonimizado", "status de vitaminas" ]]
+display(vitaminas1)
+
+
+
+
+
+print("\033[36mMédia IMC dos pacientes\033[m")
+#Media de todos os pacientes
+faixa = arquivo_df["altura"]
+faixa1 = arquivo_df["peso"]
+mediatodos= faixa1/(faixa**2)
+#display(arquivo_df.loc[1], mediatodos)
+
+
+print("Nova coluna para receber media do IMC")
+arquivo_df.loc[:,"IMC"] = mediatodos
+display(arquivo_df)
+
+print("Média da coluna de IMC (isto é, média considerando todos os pacientes")
+faixas = arquivo_df["IMC"].mean()
+
+print("A média total é", faixas)
+
+
+
+# adicionar mais uma coluna para classificar cada paciente no IMC
+
+'''if arquivo_df["IMC"] < 18.5:
+  arquivo_df["Classificação"]= "Abaixo do peso"
+elif arquivo_df.loc[IMC]  >= 18.5 and n3 <=25:
+  arquivo_df["Classificação"] = "Peso ideal"
+elif arquivo_df.loc[IMC]  >= 25 and n3 <= 29.9:
+  arquivo_df["Classificação"] = "Levemente acima do peso"
+elif arquivo_df.loc[IMC]  >=30 and n3 <= 35:
+  arquivo_df["Classificação"] = "Obsidade grau I"
+elif arquivo_df.loc[IMC]  >= 35 and n3 <= 39.9:
+  arquivo_df["Classificação"]= "Obsidade grau II"
+elif arquivo_df.loc[IMC]  > 39.9:
+  arquivo_df["Classificação"]= "Obsidade III"'''
+
+
