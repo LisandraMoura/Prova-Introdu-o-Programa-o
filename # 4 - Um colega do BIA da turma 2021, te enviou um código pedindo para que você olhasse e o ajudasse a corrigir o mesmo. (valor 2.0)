@@ -1,0 +1,33 @@
+import random
+import matplotlib.pyplot as plt
+
+
+def ordenacao_selecao(A):
+# Verificar o tamanho dinamicamente do vetor A.
+  #cont = 0
+  n = len(A) #percorrendo o arranjo A
+  for i in range(n):
+    minimo = i 
+    for j in range(i + 1, n):
+      if A[minimo]> A[j]:
+        minimo = j
+    A[i], A[minimo] = A[minimo], A[i] #ordem
+
+A = random.sample(range(-10, 10), 10) #sorteios de números entre -10 até 10, range/contando/sorteando 10 números 
+
+
+print("Arranjo não ordenado: ", A)
+
+
+
+#if __name__=="__main__": opcional
+ordenacao_selecao(A)
+
+print("Arranjo ordenado:", A)
+
+
+#Usando plotagem
+y = A
+x = A
+plt.bar(x, y)
+plt.show()
